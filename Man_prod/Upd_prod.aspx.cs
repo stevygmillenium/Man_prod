@@ -55,7 +55,13 @@ namespace Man_prod
             conn.Open();
             SqlCommand comm = new SqlCommand(constr, conn);
             comm.Connection = conn;
-            comm.CommandText = "";
+            comm.CommandText = "update [dbo].[Table] set product_name=@product_name,price=@price,quantity=@quantity,image=@image where id="+id;
+            comm.Parameters.AddWithValue("@product_name", TextBox1.Text);
+            comm.Parameters.AddWithValue("@price", float.Parse(TextBox2.Text));
+            comm.Parameters.AddWithValue("@quantity", int.Parse(TextBox3.Text));
+            comm.Parameters.AddWithValue("@image", FileUpload1.PostedFile.InputStream);
+            comm.ExecuteNonQuery();
+            conn.Close();
         }
 
         protected void Button2_Click(object sender, EventArgs e)
@@ -66,7 +72,7 @@ namespace Man_prod
             conn.Open();
             SqlCommand comm = new SqlCommand(constr, conn);
             comm.Connection = conn;
-            comm.CommandText = "";
+            comm.CommandText = "delete from [dbo].[Table] where";
         }
     }
 }
