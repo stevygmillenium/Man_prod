@@ -72,7 +72,9 @@ namespace Man_prod
             conn.Open();
             SqlCommand comm = new SqlCommand(constr, conn);
             comm.Connection = conn;
-            comm.CommandText = "delete from [dbo].[Table] where";
+            comm.CommandText = "delete from [dbo].[Table] where id="+id;
+            comm.ExecuteNonQuery ();
+            conn.Close();
         }
     }
 }
