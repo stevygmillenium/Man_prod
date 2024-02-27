@@ -23,6 +23,7 @@ namespace Man_prod
             item.img = memoryStream.ToArray();
             WebService webService = new WebService();
             webService.write_db(item);
+            Label1.Text = item.Name + " " + item.price + " " + item.quantity + " ";
         }
     }
 }
