@@ -28,7 +28,7 @@
     <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
     <asp:Button ID="Button2" runat="server" Text="Button" OnClick="Button2_Click" />
     <asp:Button ID="Button3" runat="server" Text="Button" OnClick="Button3_Click" />
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False">
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" OnRowDeleting="del_row">
         <Columns>
             <asp:BoundField DataField="Id" HeaderText="Id" />
             <asp:BoundField DataField="name" HeaderText="product name" />
@@ -51,6 +51,7 @@
                     <asp:Label ID="sub_t" runat="server"></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
+            <asp:ButtonField CommandName="Delete" HeaderText="remove" ShowHeader="True" Text="Button" />
         </Columns>
     </asp:GridView>
     <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>

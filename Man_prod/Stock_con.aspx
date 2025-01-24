@@ -17,7 +17,10 @@
             window.alert(row_count);
         }
     </script>
-    <asp:Button ID="Button1" runat="server" Text="Button" OnClientClick="get_data()" />
+    <asp:Button ID="Button1" runat="server" Text="Button" OnClientClick="get_data()" OnClick="Button1_Click" />
+    <asp:Button ID="Button2" runat="server" Text="Button" OnClick="Button2_Click" />
+    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+    <asp:ListBox ID="ListBox1" runat="server"></asp:ListBox>
     <asp:Chart ID="Chart1" runat="server" DataSourceID="SqlDataSource1">
         <Series>
             <asp:Series Name="Series1" XValueMember="product_name" YValueMembers="quantity"></asp:Series>

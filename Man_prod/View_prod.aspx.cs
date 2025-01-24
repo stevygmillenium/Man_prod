@@ -18,8 +18,14 @@ namespace Man_prod
             Button2.Text = "check out";
             Button3.Text = "place order";
             string[] card_type = { "card_one", "card_two" };
-            DropDownList1.DataSource = card_type;
-            DropDownList1.DataBind();
+            for(int i = 0; i < card_type.Length; i++) 
+            {
+                ListItem listItem = new ListItem();
+                listItem.Text = card_type[i];
+                DropDownList1.Items.Add(listItem);
+            }            
+            /*DropDownList1.DataSource = card_type;
+            DropDownList1.DataBind();*/
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -44,16 +50,16 @@ namespace Man_prod
                 string img_s = "data:image/jpg;base64," + Convert.ToBase64String(item.img, 0, item.img.Length);                
                 item.image = img_s;
                 list.Add(item);
-            }
+            }            
             GridView1.DataSource = list;
             GridView1.DataBind();
-            Item[] cart = list.ToArray();
+            /*Item[] cart = list.ToArray();
             for (int i = 0; i < cart.Length; i++)
             {
                 cart[i].img = null;
                 cart[i].image = null;
-            }            
-            Session["cart"] = cart;            
+            }  */          
+            Session["cart"] = list;            
         }
 
         protected void Button2_Click(object sender, EventArgs e)
@@ -73,24 +79,43 @@ namespace Man_prod
             }            
             Label1.Text = g_tot.ToString();
             Label2.Text = Convert.ToString(1.15 * float.Parse(Label1.Text));
-            Item[] cart = Session["cart"]as Item[];
+            List<Item> items= Session["cart"] as List<Item>;
+            Item[] cart = items.ToArray();            
             for (int i = 0; i < cart.Length; i++) 
-            {
+            {                
                 cart[i].quantity =Convert.ToInt16(quant[i]);
             }
-            var j_cart = new JavaScriptSerializer().Serialize(cart);            
-            Session["j_cart"] = j_cart;            
+            /*var j_cart = new JavaScriptSerializer().Serialize(cart);            
+            Session["j_cart"] = j_cart;*/            
             Session["g_tot"] = Label2.Text;
+        }
+
+        protected void del_row(object sender,GridViewDeleteEventArgs e) 
+        {            
+            int i =e.RowIndex;
+            List<Item> items = Session["cart"] as List<Item>;
+            items.RemoveAt(i);
+            GridView1.DataSource = items;
+            GridView1.DataBind();
         }
 
         protected void Button3_Click(object sender, EventArgs e)
         {
+            List<Item> items = Session["cart"] as List<Item>;
+            Item[] cart = items.ToArray();
+            for (int i = 0; i < cart.Length; i++)
+            {
+                cart[i].img = null;
+                cart[i].image = null;
+            }
             order order = new order();
             order.Name = TextBox2.Text;
             order.email = TextBox3.Text;
             order.address= TextBox4.Text;
             order.card_type = DropDownList1.Text;
-            order.data = Session["j_cart"] as string;            
+            var j_cart = new JavaScriptSerializer().Serialize(cart);
+            //order.data = Session["j_cart"] as string;            
+            order.data=j_cart;
             order.dateTime = DateTime.Now;
             order.amount =(float)Convert.ToDouble(Session["g_tot"]);
             WebService webService = new WebService();
