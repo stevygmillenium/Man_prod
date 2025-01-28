@@ -77,8 +77,11 @@
     <Content Include="App_Data\Database_log.ldf">
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
-    <Content Include="order_data.xslt" />
+    <Content Include="order_data.xslt">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Stock_con.aspx" />
+    <Content Include="Style_sheet.css" />
     <Content Include="Upd_prod.aspx" />
     <Content Include="View_order.aspx" />
     <Content Include="View_prod.aspx" />
