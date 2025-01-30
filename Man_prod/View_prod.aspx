@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="View_prod.aspx.cs" Inherits="Man_prod.View_prod" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link rel="stylesheet" href="Style_sheet.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:DataList ID="DataList1" runat="server" DataKeyField="Id" DataSourceID="SqlDataSource1">
@@ -24,10 +25,12 @@
         </ItemTemplate>
     </asp:DataList>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [Table]"></asp:SqlDataSource>
-    <asp:ListBox ID="ListBox1" runat="server" DataSourceID="SqlDataSource1" DataTextField="product_name" DataValueField="Id" SelectionMode="Multiple"></asp:ListBox>
-    <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
-    <asp:Button ID="Button2" runat="server" Text="Button" OnClick="Button2_Click" />
-    <asp:Button ID="Button3" runat="server" Text="Button" OnClick="Button3_Click" />
+    <div class="view">
+        <asp:ListBox ID="ListBox1" runat="server" DataSourceID="SqlDataSource1" DataTextField="product_name" DataValueField="Id" SelectionMode="Multiple"></asp:ListBox>
+        <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
+        <asp:Button ID="Button2" runat="server" Text="Button" OnClick="Button2_Click" />
+        <asp:Button ID="Button3" runat="server" Text="Button" OnClick="Button3_Click" />
+    </div>    
     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" OnRowDeleting="del_row">
         <Columns>
             <asp:BoundField DataField="Id" HeaderText="Id" />
@@ -56,8 +59,10 @@
     </asp:GridView>
     <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
     <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label><br />
-    <asp:TextBox ID="TextBox2" runat="server" ToolTip="name"></asp:TextBox><br />
-    <asp:TextBox ID="TextBox3" runat="server" ToolTip="email"></asp:TextBox><br />
-    <asp:TextBox ID="TextBox4" runat="server" ToolTip="address"></asp:TextBox><br />
-    <asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList>
+    <div id="check_out">
+        <asp:TextBox ID="TextBox2" runat="server" ToolTip="name"></asp:TextBox><br />
+        <asp:TextBox ID="TextBox3" runat="server" ToolTip="email"></asp:TextBox><br />
+        <asp:TextBox ID="TextBox4" runat="server" ToolTip="address"></asp:TextBox><br />
+        <asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList>
+    </div>    
 </asp:Content>

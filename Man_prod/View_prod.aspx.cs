@@ -18,7 +18,8 @@ namespace Man_prod
             Button2.Text = "check out";
             Button3.Text = "place order";
             string[] card_type = { "card_one", "card_two" };
-            for(int i = 0; i < card_type.Length; i++) 
+            DropDownList1.Items.Clear();
+            for (int i = 0; i < card_type.Length; i++) 
             {
                 ListItem listItem = new ListItem();
                 listItem.Text = card_type[i];

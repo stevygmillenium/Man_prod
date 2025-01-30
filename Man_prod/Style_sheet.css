@@ -1,2 +1,18 @@
 ﻿body {
+    background-color: antiquewhite
+}
+.add {
+    background-color: aquamarine
+}
+.view {
+    background-color: burlywood
+}
+.upd{
+    background-color:bisque
+}
+.stock_con{
+    background-color:gainsboro
+}
+#check_out{
+    background-color:cadetblue
 }
