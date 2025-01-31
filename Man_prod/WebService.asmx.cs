@@ -41,6 +41,7 @@ namespace Man_prod
                 comm.Parameters.AddWithValue("@price", item.price);
                 comm.Parameters.AddWithValue("@quantity", item.quantity);
                 comm.Parameters.AddWithValue("@image", item.img);
+                comm.ExecuteNonQuery();
             }
             else if(obj.GetType() == typeof(order)) 
             {
@@ -53,9 +54,30 @@ namespace Man_prod
                 comm.Parameters.AddWithValue("@j_data", order.data);                
                 comm.Parameters.AddWithValue("@o_date", order.dateTime);
                 comm.Parameters.AddWithValue("@amount", order.amount);
+                comm.ExecuteNonQuery();
+            }
+            else if (obj.GetType() == typeof(List<Item>)) 
+            {
+                List<Item> items= (List<Item>)obj;
+                DataTable dataTable = new DataTable();
+                dataTable.Columns.Add(nameof(Item.Name), typeof(string));
+                dataTable.Columns.Add(nameof(Item.price), typeof(float));
+                dataTable.Columns.Add(nameof(Item.quantity), typeof(int));
+                foreach(Item item in items) 
+                {
+                    dataTable.Rows.Add(item.Name, item.price,item.quantity);
+                }
+                SqlBulkCopy sqlBulkCopy = new SqlBulkCopy(conn);
+                sqlBulkCopy.DestinationTableName = "[Table]";
+                sqlBulkCopy.ColumnMappings.Add("Name", "product_name");
+                sqlBulkCopy.ColumnMappings.Add("price", "price");
+                sqlBulkCopy.ColumnMappings.Add("quantity", "quantity");
+                //conn.Open();
+                sqlBulkCopy.WriteToServer(dataTable);
+                conn.Close();
             }
             else { }
-            comm.ExecuteNonQuery();
+            //comm.ExecuteNonQuery();
         }
     }
 }
