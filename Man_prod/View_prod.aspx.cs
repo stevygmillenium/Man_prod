@@ -18,13 +18,17 @@ namespace Man_prod
             Button2.Text = "check out";
             Button3.Text = "place order";
             string[] card_type = { "card_one", "card_two" };
-            DropDownList1.Items.Clear();
-            for (int i = 0; i < card_type.Length; i++) 
+            //DropDownList1.Items.Clear();
+            if (DropDownList1.DataSource == null) 
             {
-                ListItem listItem = new ListItem();
-                listItem.Text = card_type[i];
-                DropDownList1.Items.Add(listItem);
-            }            
+                for (int i = 0; i < card_type.Length; i++)
+                {
+                    ListItem listItem = new ListItem();
+                    listItem.Text = card_type[i];
+                    DropDownList1.Items.Add(listItem);
+                }
+            }
+            else { }            
             /*DropDownList1.DataSource = card_type;
             DropDownList1.DataBind();*/
         }
