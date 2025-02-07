@@ -16,17 +16,11 @@ namespace Man_prod
         {
             Button1.Text = "add to cart";
             Button2.Text = "check out";
-            Button3.Text = "place order";
-            string[] card_type = { "card_one", "card_two" };
+            Button3.Text = "place order";            
             //DropDownList1.Items.Clear();
-            if (DropDownList1.DataSource == null) 
+            if (DropDownList1.DataSource != null) 
             {
-                for (int i = 0; i < card_type.Length; i++)
-                {
-                    ListItem listItem = new ListItem();
-                    listItem.Text = card_type[i];
-                    DropDownList1.Items.Add(listItem);
-                }
+                DropDownList1.Items.Clear();
             }
             else { }            
             /*DropDownList1.DataSource = card_type;
@@ -93,6 +87,14 @@ namespace Man_prod
             /*var j_cart = new JavaScriptSerializer().Serialize(cart);            
             Session["j_cart"] = j_cart;*/            
             Session["g_tot"] = Label2.Text;
+            string[] card_type = { "card_one", "card_two" };
+            DropDownList1.Items.Clear();
+            for (int i = 0; i < card_type.Length; i++)
+            {
+                ListItem listItem = new ListItem();
+                listItem.Text = card_type[i];
+                DropDownList1.Items.Add(listItem);
+            }
         }
 
         protected void del_row(object sender,GridViewDeleteEventArgs e) 
