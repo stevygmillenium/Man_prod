@@ -39,7 +39,7 @@ namespace Man_prod
             ListBox1.Items.Clear();
             foreach(Item item in list) 
             {
-                ListBox1.Items.Add(new ListItem { Text = item.Name });
+                ListBox1.Items.Add(new ListItem { Text = item.Name, Value=item.Id.ToString() });
             }
         }
 
@@ -50,7 +50,7 @@ namespace Man_prod
             ListBox1.Items.Clear();
             foreach (Item item in items) 
             {
-                ListBox1.Items.Add(new ListItem { Text = item.Name });
+                ListBox1.Items.Add(new ListItem { Text = item.Name, Value= item.Id.ToString() });
             }
         }
     }
